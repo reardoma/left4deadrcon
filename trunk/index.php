@@ -12,7 +12,7 @@
 			<label for="server">Server IP &amp; Port<div class="help">("xxx.xxx.xxx.xxx:xxxxx")</div></label>
 			<input type="text" name="server" id="server" />
 			
-			<label for="password">Rcon password</label>
+			<label for="password">Server Rcon password</label>
 			<input type="password" name="password" id="password" />
 			<input type="submit" value="Connect"  class="submit" />
 		</form>
