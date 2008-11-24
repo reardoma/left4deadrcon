@@ -25,6 +25,12 @@ h2{
 a,a:link,a:visited,a:active{
 	color:#CCC;
 }
+div#noscriptwarning{
+	padding:5px 20px;
+	background-color:red;
+	font-weight:bold;
+}
+
 #wrapper{
 	padding:20px;
 	width:740px;
