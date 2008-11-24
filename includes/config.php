@@ -3,15 +3,7 @@
 
 	session_start();
 
-	define("LIVE", 1);
-	
-	if(LIVE){
-		//webroot
-		define("ROOT_URL","http://rcon.xcesweb.com/");
-	}else{
-		//webroot
-		define("ROOT_URL","http://rcommand.xcesweb.com/");
-	}
+	define("ROOT_URL","http://l4dcommander.com/");
 	
 	function setNotice($title,$location="",$permanent=0){
 		if(isset($_POST)){
