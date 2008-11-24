@@ -22,6 +22,9 @@ h2{
 	font-size:1.5em;
 	padding-right:20px;
 }
+a,a:link,a:visited,a:active{
+	color:#CCC;
+}
 #wrapper{
 	padding:20px;
 	width:780px;
@@ -89,7 +92,9 @@ form#connect{
 			padding:5px 0;
 			border-bottom:1px solid #333
 		}
-
+#footer{
+	padding:20px;
+}
 	
 form.command{
 	background-color:#666;
