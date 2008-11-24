@@ -8,4 +8,7 @@
 <link rel="stylesheet" href="styles.css" type="text/css" />
 </head>
 <body>
+	<noscript>
+		<div id="noscriptwarning">Left4Dead remote commander requires javascript to be enabled and will not work correctly without it. Please enable javascript now.</div>
+	</noscript>
 	<h1>Remote commander</h1>
