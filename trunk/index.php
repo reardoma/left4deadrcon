@@ -2,8 +2,6 @@
 	include_once("includes/config.php");
 	include_once("display_includes/top.php");
 ?>
-
-<h1>Remote commander</h1>
 <div id="wrapper">
 	<?php include('display_includes/notice.php');?>
 	
