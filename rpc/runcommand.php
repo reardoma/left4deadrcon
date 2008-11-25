@@ -13,7 +13,7 @@ $post_var_list = array(
 //check for content, trim and crap-strip fields
 while(list($var,$param) = @each($post_var_list)){
 	if (!empty($_POST[$param]) && strlen(trim($_POST[$param]))){
-		$_POST[$param]= strtolower(trim(addslashes($_POST[$param])));
+		$_POST[$param]= trim(addslashes($_POST[$param]));
 	}else{
 		 echo '({"responseSuccess": "failure", "responseText": "Invalid command"})';
 	}

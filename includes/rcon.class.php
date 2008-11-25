@@ -127,7 +127,6 @@ class RCon {
     }
 
     function sendCommand($Command) {
-		$Command = '"'.trim(str_replace(' ','" "', $Command)).'"';
 		$this->_Write(SERVERDATA_EXECCOMMAND,$Command,'');
     }
 
