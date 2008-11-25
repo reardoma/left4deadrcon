@@ -59,6 +59,19 @@ form#connect{
 	#serverstatus h2{
 		width:120px;
 	}
+	#userlist{
+		display:none;
+	}
+		#userlist table{
+			width:100%;
+		}
+			#userlist th, #userlist td{
+				padding:3px;
+			}
+			#userlist th{
+				text-align:left;
+				background-color:#777;
+			}
 #maincontrols{
 	overflow:hidden;
 	width:100%;
@@ -100,6 +113,9 @@ form#connect{
 		}
 #footer{
 	padding:20px;
+	width:740px;
+	margin-left:auto;
+	margin-right:auto;
 }
 	
 form.command{

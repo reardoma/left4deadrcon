@@ -36,6 +36,19 @@ function updateServerStatus(){
 		$('#serverstatus dl').append('<dt>Map</dt><dd>'+data.map+'</dd>');
 		$('#serverstatus dl').append('<dt>Difficulty</dt><dd>'+data.difficulty+'</dd>');
 		$('#serverstatus dl').append('<dt>Players</dt><dd>'+data.players+'</dd>');
+		
+		//populate user table
+		$('#userlist tbody').empty();
+		if(data.playerinfo.length){
+			$('#userlist').show();
+		}else{
+			$('#userlist').hide();
+		}
+		$.each(data.playerinfo, function(i,player){
+			$('#userlist tbody').append('<tr><td>'+ player.id+'</td><td>'+ player.name+'</td><td>'+ player.uniqid+'</td><td>'+ player.connected+'</td><td>'+ player.ping+'</td><td>'+ player.state+'</td><td>'+ player.ip+'</td></tr>');
+		});
+	
+
 	});
 }
 
