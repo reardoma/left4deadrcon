@@ -48,18 +48,14 @@ class RCon {
 	    $result['players'] = trim(substr($line[4], strpos($line[4], ":") + 1));
 		$result['ip'] = trim(substr($line[2], strpos($line[2], ":") + 1));
 		
+		$playerInfo = explode(" ", $result['players']);
+		$result['playercount'] = $playerInfo[0];
+		
 		//nasty extra line as this isn't by default included in the l4d status
 		$result['difficulty']=$this->parseSetting($this->rconCommand("z_difficulty"));
-		
-		$playerInfo = explode(" ", $result['players']);
-		$playerCount = $playerInfo[0];
-		
-		//REMOVE ME
-		$playerCount=1;
-		$line[7]='# 193 1 "[FXh] xcession" STEAM_1:0:3717183 01:08 78 0 active 20000 82.152.202.195:27005';
-		
+				
 		//format player info
-		for($i = 0; $i < $playerCount; $i++){
+		for($i = 0; $i < $result['playercount']; $i++){
 			//get player line items
 			$tmp = explode(" ", $line[$i+7]);
 			
