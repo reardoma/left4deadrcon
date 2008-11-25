@@ -51,9 +51,31 @@ class RCon {
 		//nasty extra line as this isn't by default included in the l4d status
 		$result['difficulty']=$this->parseSetting($this->rconCommand("z_difficulty"));
 		
+		$playerInfo = explode(" ", $result['players']);
+		$playerCount = $playerInfo[0];
+		
+		//REMOVE ME
+		$playerCount=1;
+		$line[7]='# 193 1 "[FXh] xcession" STEAM_1:0:3717183 01:08 78 0 active 20000 82.152.202.195:27005';
+		
+		//format player info
+		for($i = 0; $i < $playerCount; $i++){
+			//get player line items
+			$tmp = explode(" ", $line[$i+7]);
+			
+			$result['player'.($i+1)]['id']=trim($tmp[1]);
+			$result['player'.($i+1)]["name"]  =trim(ltrim($tmp[3],"\"")." ".rtrim($tmp[4],"\""));
+			$result['player'.($i+1)]["uniqid"] = trim($tmp[5]);
+			$result['player'.($i+1)]["connected"] = trim($tmp[6]);
+			$result['player'.($i+1)]["ping"] = trim($tmp[7]);
+			$result['player'.($i+1)]["state"] = trim($tmp[9]);
+			$result['player'.($i+1)]["ip"] = trim($tmp[11]);
+		} 
+
 		//return formatted result
 		return $result;		
 	}
+
 	
     function _Write($cmd, $s1='', $s2='') {
 	    // Get and increment the packet id

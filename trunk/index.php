@@ -20,6 +20,22 @@
 			<div id="serverstatus">
 				<h2>Server status</h2>
 				<dl></dl>
+				
+				<div id="userlist">
+					<h2>Users playing</h2>
+					<table cellspacing="1">
+						<thead>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Uniqid</th>
+							<th>Time online</th>
+							<th>Ping</th>
+							<th>Status</th>
+							<th>IP</th>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
 			</div>
 
 			<div id="common">
