@@ -144,7 +144,6 @@ class RCon {
 		$settingString=eregi_replace('^(.*) \=\ "([^\"]*)".*$','\\2', $settingString);
 		return $settingString;
 	}
-	
-	
+
 }
 ?> 
