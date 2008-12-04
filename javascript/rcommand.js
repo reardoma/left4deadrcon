@@ -1,22 +1,56 @@
 $(function(){
-	/*
-	$('form#connect').submit(function(event){
-		$.post('/rpc/connect.php', {server: $('#server').val(), password:$('#password').val()}, responseToConsole, 'json');
+	$('#serverinfo li input[@type=hidden]').css("position","absolute").css("left","-5000px");
+
+	$('#serverinfo li').click(
+		function(){
+			$(this).siblings().removeClass("selected");			
+			$(this).addClass("selected");
+		}
+	);	
+	
+	$('#menu a').click(function(){
+		$('.tabbedcontent').hide();
+		$('#'+$(this).attr("class")).show();
+		$('#menu li').removeClass("selected");
+		$(this).parent().addClass("selected");
 		return false;
 	});
-	*/
+	
+	$('#console h2').toggle(
+		function(){
+			$(this).addClass("selected");
+			$('#consolelog').slideDown(100);
+		},
+		function(){
+			$(this).removeClass("selected");
+			$('#consolelog').slideUp(100);
+		}
+	);
+	
 
 	$('form.command').submit(function(event){
 		//disable all other forms
 		$('form.command input.submit').attr("disabled","disabled");
-		//find this field's cmmand
-		thisCommandField=$(this).find('input[@name=command],select[@name=command]');
-		//check for command prefix
-		prefix=$(thisCommandField).attr("title");
+				
+		//find this command important info
+		thisCommandField=$(this).find('input.command, select.command');
+		thisCommandPrefix=$(thisCommandField).siblings('input.prefix');
+		
 		//apply working symbol
 		$(thisCommandField).addClass("working");
+
+		//check for command prefix
+		if(thisCommandPrefix.length){
+			prefix=$(thisCommandPrefix).val();
+		}else{
+			prefix="";
+		}		
 		
-		$.post('/rpc/runcommand.php', {command: prefix+thisCommandField.val()}, responseToConsole, 'json');
+		//report client command to console
+		consoleData = {"command": prefix+thisCommandField.val()};
+		reportToConsole(consoleData);
+			
+		$.post('/rpc/runcommand.php', {prefix: prefix, command: thisCommandField.val()}, commandResponse, 'json');
 		return false;
 	});
 	
@@ -27,46 +61,47 @@ $(function(){
 });
 
 function updateServerStatus(){
-	$('#serverstatus h2').addClass("working-grey");
+	$('#menu li a.serverinfo').siblings('span').addClass("working-grey");
 	$.getJSON("/rpc/serverstatus.php", function(data){
-		$('#serverstatus h2').removeClass("working-grey");
-		$('#serverstatus dl').empty();
-		$('#serverstatus dl').append('<dt>IP</dt><dd>'+data.ip+'</dd>');
-		$('#serverstatus dl').append('<dt>Hostname</dt><dd>'+data.hostname+'</dd>');
-		$('#serverstatus dl').append('<dt>Map</dt><dd>'+data.map+'</dd>');
-		$('#serverstatus dl').append('<dt>Difficulty</dt><dd>'+data.difficulty+'</dd>');
-		$('#serverstatus dl').append('<dt>Players</dt><dd>'+data.players+'</dd>');
+		$('#menu li span').removeClass("working-grey");
+		$('#serverinfo p').empty();
+		$('#serverinfo li.ip p').append(data.ip);
+		$('#serverinfo li.hostname p').append(data.hostname);
+		$('#serverinfo li.hostname input.command').attr("value", data.hostname);
+		$('#serverinfo li.map p').append(data.map);
+		$('#serverinfo li.map select.command option[@value='+data.map+']').attr("selected","selected");
+		$('#serverinfo li.difficulty p').append(data.difficulty);
+		$('#serverinfo li.difficulty select.command option[@value='+data.difficulty+']').attr("selected","selected");
 		
 		//populate user table
-		$('#userlist tbody').empty();
-		if(data.playerinfo.length){
-			$('#userlist').show();
-		}else{
-			$('#userlist').hide();
-		}
+		$('#playerlist tbody').empty();
 		$.each(data.playerinfo, function(i,player){
-			$('#userlist tbody').append('<tr><td>'+ player.id+'</td><td>'+ player.name+'</td><td>'+ player.uniqid+'</td><td>'+ player.connected+'</td><td>'+ player.ping+'</td><td>'+ player.state+'</td><td>'+ player.ip+'</td></tr>');
+			$('#playerlist tbody').append('<tr><td>'+ player.id+'</td><td>'+ player.name+'</td><td>'+ player.uniqid+'</td><td>'+ player.connected+'</td><td>'+ player.ping+'</td><td>'+ player.state+'</td><td>'+ player.ip+'</td></tr>');
 		});
-	
-
 	});
 }
 
-function responseToConsole(data){
+function commandResponse(data){
 	//enable all other forms
 	$('form.command input.submit').removeAttr("disabled");
-	
-	$('input[@name=command],select[@name=command]').removeClass("working");
-	if(data.responseSuccess=="success"){
-		$('#maincontrols').fadeIn("slow");		
-	}
-	if(data.responseText.length){
-		$('#consolelog').append('<div class="' +data.responseSuccess+ '">' + data.responseText.replace(/\n/g,"<br />") + '</div>');
+	$('input.command, select.command').removeClass("working");
+	reportToConsole(data);
+}
+
+function reportToConsole(data){
+	if(data.responseSuccess != null){
+		//it is the response returning from the server
+		if(data.responseText.length){
+			$('#consolelog').append('<div class="' +data.responseSuccess+ '">' + data.responseText.replace(/\n/g,"<br />") + '</div>');
+		}else{
+			$('#consolelog').append('<div class="' +data.responseSuccess+ '">Command run</div>');
+		}
 	}else{
-		$('#consolelog').append('<div class="' +data.responseSuccess+ '">Done</div>');
+		//it was the command going to server
+		$('#consolelog').append('<div class="client">' + data.command+ '</div>');
 	}
 	
-	$('#consolelog').scrollTop(10000); //faking scrollHeight as it inexplicably doesn't want to work
+	$('#consolelog').scrollTop(100000); //faking scrollHeight as it inexplicably doesn't want to work
 	
 	return false;
 }

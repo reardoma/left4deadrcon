@@ -46,26 +46,28 @@ class RCon {
 		$result["hostname"] = trim(substr($line[0], strpos($line[0], ":") + 1));
 	    $result['map'] = trim(substr($line[3], strpos($line[3], ":") + 1));
 	    $result['players'] = trim(substr($line[4], strpos($line[4], ":") + 1));
-		$result['ip'] = trim(substr($line[2], strpos($line[2], ":") + 1));
-		
+		$ip = explode(" ", trim(substr($line[2], strpos($line[2], ":") + 1)));
+
+		$result['ip'] =$ip[0];
 		$playerInfo = explode(" ", $result['players']);
 		$result['playercount'] = $playerInfo[0];
 		
 		//nasty extra line as this isn't by default included in the l4d status
 		$result['difficulty']=$this->parseSetting($this->rconCommand("z_difficulty"));
-				
+
 		//format player info
 		for($i = 0; $i < $result['playercount']; $i++){
 			//get player line items
-			$tmp = explode(" ", $line[$i+7]);
+			$tmp = explode(" ", trim($line[$i+7]));
+			$name= explode('"', trim($line[$i+7]));
 			
-			$result['player'.($i+1)]['id']=trim($tmp[1]);
-			$result['player'.($i+1)]["name"]  =trim(ltrim($tmp[3],"\"")." ".rtrim($tmp[4],"\""));
-			$result['player'.($i+1)]["uniqid"] = trim($tmp[5]);
-			$result['player'.($i+1)]["connected"] = trim($tmp[6]);
-			$result['player'.($i+1)]["ping"] = trim($tmp[7]);
+			$result['player'.($i+1)]['id']=trim($tmp[3]);
+			$result['player'.($i+1)]["name"]  =trim(ltrim($name[1]));
+			$result['player'.($i+1)]["uniqid"] = trim($tmp[6]);
+			$result['player'.($i+1)]["connected"] = trim($tmp[7]);
+			$result['player'.($i+1)]["ping"] = trim($tmp[8]);
 			$result['player'.($i+1)]["state"] = trim($tmp[9]);
-			$result['player'.($i+1)]["ip"] = trim($tmp[11]);
+			$result['player'.($i+1)]["ip"] = trim($tmp[10]);
 		} 
 
 		//return formatted result
@@ -127,7 +129,7 @@ class RCon {
     }
 
     function sendCommand($Command) {
-		$this->_Write(SERVERDATA_EXECCOMMAND,$Command,'');
+		$this->_Write(SERVERDATA_EXECCOMMAND,trim($Command),'');
     }
 
     function rconCommand($Command) {

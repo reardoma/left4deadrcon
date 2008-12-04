@@ -5,7 +5,7 @@
 		//find some status information
 		$rcon= new RCon($_SESSION['server'], $_SESSION['port'], $_SESSION['password']);
 		$rcon ->authenticate();
-		$status=$rcon->getStatus();
+		$status=$rcon->getStatus();		
 								
 		echo '({
 			"ip": '.json_encode($status['ip']).',
@@ -13,6 +13,7 @@
 			"map": '.json_encode($status['map']).',
 			"difficulty": '.json_encode($status['difficulty']).',
 			"players": '.json_encode($status['players']).',
+			"playercount": '.$status['playercount'].',
 			"playerinfo": [';
 				for($i = 1; $i <= $status['playercount']; $i++){
 					echo '{
@@ -24,7 +25,7 @@
 						"state": '.json_encode($status['player'.$i]["state"]).',
 						"ip": '.json_encode($status['player'.$i]["ip"]).'
 					}';
-					if($i != $playerCount) echo ',';
+					if($i != $status['playercount']) echo ',';
 				}
 
 		echo '
