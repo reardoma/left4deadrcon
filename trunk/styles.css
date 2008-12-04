@@ -5,17 +5,16 @@
 }
 
 body{
-	font-family: Arial, Verdana, sans-serif; 
+	font-family: 'Lucida Grande','Lucida Sans Unicode',Verdana,Tahoma,Arial,sans-serif; 
 	font-size:75%;
 	color:white;
-	background-color:#333;
+	background-color:#242222;
 }
 h1{
-	background:#000 url(/display_images/l4d_logo.jpg) 20px 50% no-repeat;
-	padding:0 0 15px 220px;
-	line-height:70px;
-	border-bottom:1px solid #666;
-	font-size:2em;
+	background:url(/display_images/l4d_logo.png) 0 0 no-repeat;
+	text-indent:-5000px;
+	height:44px;
+	margin:20px 0 40px 20px;
 }
 h2{
 	margin:10px 0;
@@ -25,6 +24,31 @@ h2{
 a,a:link,a:visited,a:active{
 	color:#CCC;
 }
+label{
+	text-transform:uppercase;
+	font-size:0.9em;
+	color:#CCC;
+}
+input,select,textarea{
+	font-family:Arial;
+	border:2px solid #BBBBBB;
+	border-color:#BBB #EEE #EEE #BBB;
+	padding:2px;
+	color:#333;
+}
+	input.submit{
+		background:url(/display_images/button_submit.png) 0 0 no-repeat;
+		width:53px !important;
+		height:22px;
+		text-indent:-5000px;
+		border:0;
+		color:white;
+		font-weight:bold;
+		padding:auto;
+		letter-spacing:500px;
+		overflow:hidden;
+		}
+
 div#noscriptwarning{
 	padding:5px 20px;
 	background-color:red;
@@ -32,57 +56,207 @@ div#noscriptwarning{
 }
 
 #wrapper{
-	padding:20px;
+	padding:10px;
 	width:740px;
-	margin-left:auto;
-	margin-right:auto;
 }
-form#connect{
-	width:200px;
-	margin-left:auto;
-	margin-right:auto;
-	background-color:#444;
-	padding:15px;
-	border:1px solid #555;
+
+#notice{
+	position:absolute;
+	top:70px;
+	left:20px;
 }
-	form#connect input,form#connect label{
-		font-size:1.5em;
+
+ul#menu, #connect h2{
+	position:absolute;
+	left:40px;
+	top:97px;
+}
+	ul#menu li{
+		float:left;
+		position:relative;
 	}
-		form#connect input{
-			margin-bottom:10px;
+	ul#menu li a{
+		background-repeat:no-repeat;
+		background-position:0 100%;
+		text-indent:-5000px;
+		height:28px;
+		outline:none;
+		display:block;
+	}
+		ul#menu li.selected a, ul#menu li a.hover{
+			background-position:0 0 ;
 		}
-#common{
-	overflow:hidden;
-	width:100%;
+	ul#menu li span{
+		position:absolute;		
+		height:20px;
+		width:20px;
+		right:10px;
+		top:5px;
+	}
+	ul#menu li a.serverinfo{
+		background-image:url(/display_images/tab_server.png);
+		width:103px;
+	}
+	ul#menu li a.playerlist{
+		background-image:url(/display_images/tab_players.png);
+		width:108px;
+	}
+
+.container, .containertop, .containerbottom{
+	background-repeat:no-repeat;
+	background-position:0 0;
 }
-#serverstatus{}
-	#serverstatus h2{
-		width:120px;
+.container{
+	overflow:hidden;	
+	padding:20px 30px;
+}
+.containertop{
+	height:15px;
+}
+.containerbottom{
+	height:15px;
+}
+
+#connect h2{
+	background:url(/display_images/tab_login.png) 0 0 no-repeat;
+	width:75px;
+	margin:0;
+	padding:0;
+	height:28px;
+	text-indent:-5000px;
+}
+#connect input.submit{
+	margin-left:120px;
+}
+
+#serverinfo .container, #connect .container{
+	background:url(/display_images/bg_shadow_edges.png) 0 0 repeat-y;
+	width:450px;
+}
+#serverinfo .containertop, #connect .containertop{
+	background-image:url(/display_images/bg_shadow_top.png);
+}
+#serverinfo .containerbottom, #connect .containerbottom{
+	background-image:url(/display_images/bg_shadow_bottom.png);
+}
+
+#playerlist .container{
+	background:url(/display_images/bg_shadow_edges_wide.png) 0 0 repeat-y;
+	width:660px;
+}
+#playerlist .containertop{
+	background-image:url(/display_images/bg_shadow_top_wide.png);
+}
+#playerlist .containerbottom{
+	background-image:url(/display_images/bg_shadow_bottom_wide.png);
+}
+
+#playerlist{
+	display:none;
+}
+	#playerlist table{
+		width:100%;
 	}
-	#userlist{
-		display:none;
+	#playerlist th, #playerlist td{
+		padding:3px;
 	}
-		#userlist table{
+	#playerlist th{
+		text-align:left;
+		background-color:#777;
+	}
+	
+#serverinfo{}
+	#serverinfo li, #connect li{
+		overflow:hidden;
+		width:100%;
+		margin-bottom:1px;
+		color:white;
+	}
+		#serverinfo li:hover,  #connect li:hover{
+			background-color:#3F3F3F;
+		}
+		
+		#serverinfo li p{
+			margin: 7px 0 5px 0;
+			float:left;
+			width:250px;
+			font-size:1.2em;
+			cursor:pointer;
+		}
+			#serverinfo li.selected p{
+				display:none;
+			}
+			/*exceptions for non-editable fields*/
+			#serverinfo li.noedit p{
+				display:block !important;
+				cursor:default;
+			}
+		#serverinfo form.command{
 			width:100%;
+			padding:0;
+			margin:0;
+			float:left;
+			overflow:hidden;
+			cursor:pointer;
 		}
-			#userlist th, #userlist td{
-				padding:3px;
+			#serverinfo label,  #connect label{
+				display:block;
+				float:left;
+				margin:0 10px 0 0;
+				width:100px;
+				padding:10px 10px 10px 0;
+				background-color:#2C2C2C;
+				text-align:right;
+				cursor:pointer;
 			}
-			#userlist th{
-				text-align:left;
-				background-color:#777;
+				#serverinfo li.noedit label{
+					cursor:default;
+				}
+				#serverinfo li:hover label, #connect li:hover label{
+					background-color:#363636;
+				}
+			#serverinfo input, #serverinfo select, #connect input{
+				margin: 5px 0 0 0;
+				font-size:1.2em;
+				float:left;
+				width:250px;				
+				display:none;
 			}
-#maincontrols{
-	overflow:hidden;
-	width:100%;
-}
+				#connect input{
+					display:block;
+				}
+				#serverinfo input.submit{
+					margin:7px 0 0 5px;
+					float:left;
+				}
+				#serverinfo li.selected input,#serverinfo li.selected select{
+					display:block;
+				}	
+	
 #console{
-	width:630px;
-}
+	position:absolute;
+	width:100%;
+	bottom:0;
+	left:0;
+}	
+	#consolecontainer{
+		background-color:black;
+		padding:10px 20px 10px 20px;
+	}
+	#console h2{
+		background:url(/display_images/tab_console.png) 0 0 no-repeat;
+		width:95px;
+		height:24px;
+		text-indent:-5000px;
+		margin:0 0 0 20px;
+		cursor:pointer;
+	}
+		#console h2.selected{
+			background-position:0 100%;
+		}
 	#console form.command{
 		border:0;
 		padding:0;
-		background:none;
 		width:auto;
 	}
 		#console form.command input, #console form.command label{
@@ -98,71 +272,31 @@ form#connect{
 				}
 	#consolelog{
 		background-color:black;
-		padding:10px;
 		font-family:Arial;
 		font-size:1em;
 		color:white;
-		height:200px;
-		position:relative;
+		height:300px;
 		overflow:auto;
 		border:1px solid #666;
+		display:none;
+		margin-top:10px;
 	}
 		#consolelog div{
-			padding:5px 0;
-			border-bottom:1px solid #333
+			padding:5px 10px;
 		}
 #footer{
 	padding:20px;
 	width:740px;
-	margin-left:auto;
-	margin-right:auto;
 }
-	
-form.command{
-	background-color:#666;
-	padding:5px;
-	border:1px solid #888;
-	float:left;
-	width:200px;
-	margin:0 10px 10px 0;
-}
-	label{
-		color:#CCC;
-		display:block;
-		margin:0 0 3px 0;
-	}
-	input, select{
-		display:block;
-		margin: 0 0 5px 0;
-	}
-		form.command input, form.command select{
-			width:100%;
-		}
-		form.command input.submit{
-			width:auto;
-		}
-		
-dl{
-	overflow:hidden;
-	width:400px;
-}
-	dt{
-		color:#aaa;
-		font-weight:strong;
-		float:left;
-		clear:left;
-		width:100px;
-	}
-	dd{
-		float:left;
-		width:300px;
-	}
 	
 .working{
-	background:#FFFFFF url(/display_images/working.gif) right center no-repeat;
+	/*background:#FFFFFF url(/display_images/working.gif) right center no-repeat;*/
 }
 .working-grey{
 	background:url(/display_images/working-grey.gif) right center no-repeat;
+}
+.client{
+	background-color:#222;
 }
 .success{
 	color:green;
