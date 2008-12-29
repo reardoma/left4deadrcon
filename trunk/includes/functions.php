@@ -8,7 +8,7 @@ function setNotice($title,$location="",$permanent=0){
 	$_SESSION['notice_permanent']=$permanent;
 
 	if(!empty($location)){
-		header("Location: ".rtrim("http://".$_SERVER['HTTP_HOST'],"/").$location);
+		header("Location: ".$location);
 		exit();
 	}
 }
@@ -22,7 +22,7 @@ function setError($title="An error occured",$location="",$permanent=0){
 	$_SESSION['notice_permanent']=$permanent;
 
 	if(!empty($location)){
-		header("Location: ".rtrim("http://".$_SERVER['HTTP_HOST'],"/").$location);
+		header("Location: ".$location);
 		exit();
 	}
 }

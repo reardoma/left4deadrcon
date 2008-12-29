@@ -11,7 +11,7 @@ body{
 	background-color:#242222;
 }
 h1{
-	background:url(/display_images/l4d_logo.png) 0 0 no-repeat;
+	background:url(display_images/l4d_logo.png) 0 0 no-repeat;
 	text-indent:-5000px;
 	height:44px;
 	margin:20px 0 40px 20px;
@@ -37,7 +37,7 @@ input,select,textarea{
 	color:#333;
 }
 	input.submit{
-		background:url(/display_images/button_submit.png) 0 0 no-repeat;
+		background:url(display_images/button_submit.png) 0 0 no-repeat;
 		width:53px !important;
 		height:22px;
 		text-indent:-5000px;
@@ -94,11 +94,11 @@ ul#menu, #connect h2{
 		top:5px;
 	}
 	ul#menu li a.serverinfo{
-		background-image:url(/display_images/tab_server.png);
+		background-image:url(display_images/tab_server.png);
 		width:103px;
 	}
 	ul#menu li a.playerlist{
-		background-image:url(/display_images/tab_players.png);
+		background-image:url(display_images/tab_players.png);
 		width:108px;
 	}
 
@@ -118,7 +118,7 @@ ul#menu, #connect h2{
 }
 
 #connect h2{
-	background:url(/display_images/tab_login.png) 0 0 no-repeat;
+	background:url(display_images/tab_login.png) 0 0 no-repeat;
 	width:75px;
 	margin:0;
 	padding:0;
@@ -130,25 +130,25 @@ ul#menu, #connect h2{
 }
 
 #serverinfo .container, #connect .container{
-	background:url(/display_images/bg_shadow_edges.png) 0 0 repeat-y;
+	background:url(display_images/bg_shadow_edges.png) 0 0 repeat-y;
 	width:450px;
 }
 #serverinfo .containertop, #connect .containertop{
-	background-image:url(/display_images/bg_shadow_top.png);
+	background-image:url(display_images/bg_shadow_top.png);
 }
 #serverinfo .containerbottom, #connect .containerbottom{
-	background-image:url(/display_images/bg_shadow_bottom.png);
+	background-image:url(display_images/bg_shadow_bottom.png);
 }
 
 #playerlist .container{
-	background:url(/display_images/bg_shadow_edges_wide.png) 0 0 repeat-y;
+	background:url(display_images/bg_shadow_edges_wide.png) 0 0 repeat-y;
 	width:660px;
 }
 #playerlist .containertop{
-	background-image:url(/display_images/bg_shadow_top_wide.png);
+	background-image:url(display_images/bg_shadow_top_wide.png);
 }
 #playerlist .containerbottom{
-	background-image:url(/display_images/bg_shadow_bottom_wide.png);
+	background-image:url(display_images/bg_shadow_bottom_wide.png);
 }
 
 #playerlist{
@@ -244,7 +244,7 @@ ul#menu, #connect h2{
 		padding:10px 20px 10px 20px;
 	}
 	#console h2{
-		background:url(/display_images/tab_console.png) 0 0 no-repeat;
+		background:url(display_images/tab_console.png) 0 0 no-repeat;
 		width:95px;
 		height:24px;
 		text-indent:-5000px;
@@ -293,7 +293,7 @@ ul#menu, #connect h2{
 	/*background:#FFFFFF url(/display_images/working.gif) right center no-repeat;*/
 }
 .working-grey{
-	background:url(/display_images/working-grey.gif) right center no-repeat;
+	background:url(display_images/working-grey.gif) right center no-repeat;
 }
 .client{
 	background-color:#222;
