@@ -15,8 +15,11 @@ class RCon {
 	    $this->Password = $password;
 	    $this->Server = $server;
 	    $this->Port = $port;
-		$this->_Sock = @fsockopen($this->Server, $this->Port, $errno, $errstr, 5) or die("Unable to open socket to server: $errstr ($errno)");
-	    $this->_Set_Timeout($this->_Sock,1,500);
+		$tmpSock=@fsockopen($this->Server, $this->Port, $errno, $errstr, 5);
+		if($tmpSock){
+			$this->_Sock =$tmpSock;
+			$this->_Set_Timeout($this->_Sock,1,500);
+	    }
 	}
 	
 	function authenticate(){		
@@ -60,14 +63,15 @@ class RCon {
 			//get player line items
 			$tmp = explode(" ", trim($line[$i+7]));
 			$name= explode('"', trim($line[$i+7]));
-			
-			$result['player'.($i+1)]['id']=trim($tmp[3]);
-			$result['player'.($i+1)]["name"]  =trim(ltrim($name[1]));
-			$result['player'.($i+1)]["uniqid"] = trim($tmp[6]);
-			$result['player'.($i+1)]["connected"] = trim($tmp[7]);
-			$result['player'.($i+1)]["ping"] = trim($tmp[8]);
-			$result['player'.($i+1)]["state"] = trim($tmp[9]);
-			$result['player'.($i+1)]["ip"] = trim($tmp[10]);
+			preg_match('/((\d+) (\d+) (".*") (STEAM_\d+:\d+:\d+) (.*) (\d+) (\d+) (\w+) (\d+) (\d+.\d+.\d+.\d+):(\d+))/',$line[$i+7],$matches);
+
+			$result['player'.($i+1)]["id"] = $matches[2];
+			$result['player'.($i+1)]["name"] = $matches[4];
+			$result['player'.($i+1)]["uniqid"] = $matches[5];
+			$result['player'.($i+1)]["connected"] = $matches[6];
+			$result['player'.($i+1)]["ping"] = $matches[7];
+			$result['player'.($i+1)]["state"] = $matches[9];
+			$result['player'.($i+1)]["ip"] = $matches[11];
 		} 
 
 		//return formatted result
