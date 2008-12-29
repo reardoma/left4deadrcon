@@ -29,6 +29,13 @@ $_SESSION['port']=$port;
 $_SESSION['password']=$_POST['password'];
 
 $rcon= new RCon($_SESSION['server'], $_SESSION['port'], $_SESSION['password']);
+
+//abort if no connection is possible at all
+if($rcon->_Sock==null){
+	setError("Connection failed: cannot connect to that server","/index.php");
+}
+
+//attempt to authenticate with rcon password
 $success=$rcon ->authenticate();
 
 if($success){
