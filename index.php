@@ -7,7 +7,7 @@
 		
 	<?php if(!isset($_SESSION['connected']) || !$_SESSION['connected']){ ?>
 
-		<form action="/rpc/connect.php" method="post" id="connect">
+		<form action="rpc/connect.php" method="post" id="connect">
 			<h2>Login</h2>
 			<div class="containertop"></div>
 			<div class="container">
@@ -41,7 +41,7 @@
 						<p></p>
 					</li>
 					<li class="hostname">
-						<form action="/rpc/runcommand.php" method="post" class="command">
+						<form action="rpc/runcommand.php" method="post" class="command">
 							<label for="hostname">Name:</label>
 							<p></p>
 							<input type="text" name="command" id="hostname" class="command" />
@@ -50,7 +50,7 @@
 						</form>
 					</li>
 					<li class="map">
-						<form action="/rpc/runcommand.php" method="post" class="command">
+						<form action="rpc/runcommand.php" method="post" class="command">
 							<label for="changelevel">Map:</label>
 							<p></p>
 							<select name="command" id="changelevel" class="command">
@@ -90,7 +90,7 @@
 						</form>
 					</li>
 					<li class="difficulty">
-						<form action="/rpc/runcommand.php" method="post" class="command">
+						<form action="rpc/runcommand.php" method="post" class="command">
 							<label for="z_difficulty">Difficulty:</label>
 							<p></p>
 							<select name="command" id="z_difficulty" class="command">
@@ -104,7 +104,7 @@
 						</form>
 					</li>
 					<li class="password">
-						<form action="/rpc/runcommand.php" method="post" class="command">
+						<form action="rpc/runcommand.php" method="post" class="command">
 							<label for="sv_password">Server password:</label>
 							<p></p>
 							<input type="password" name="command" id="sv_password" class="command" />
@@ -149,7 +149,7 @@
 	<div id="console">
 		<h2>Console</h2>
 		<div id="consolecontainer">
-			<form action="/rpc/runcommand.php" method="post" class="command">
+			<form action="rpc/runcommand.php" method="post" class="command">
 				<label>Command</label>
 				<input type="text" name="command" class="command" />
 				<input type="submit" value="submit" class="submit" />

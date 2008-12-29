@@ -3,8 +3,8 @@
 <head>
 <title>Left4Dead remote commander</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<script src="/javascript/jquery-1.2.6.pack.js"  type="text/javascript"></script>
-<script src="/javascript/rcommand.js"  type="text/javascript" ></script>
+<script src="javascript/jquery-1.2.6.pack.js"  type="text/javascript"></script>
+<script src="javascript/rcommand.js"  type="text/javascript" ></script>
 <link rel="stylesheet" href="styles.css" type="text/css" />
 </head>
 <body>

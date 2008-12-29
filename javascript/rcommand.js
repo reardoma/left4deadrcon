@@ -50,7 +50,7 @@ $(function(){
 		consoleData = {"command": prefix+thisCommandField.val()};
 		reportToConsole(consoleData);
 			
-		$.post('/rpc/runcommand.php', {prefix: prefix, command: thisCommandField.val()}, commandResponse, 'json');
+		$.post('rpc/runcommand.php', {prefix: prefix, command: thisCommandField.val()}, commandResponse, 'json');
 		return false;
 	});
 	
@@ -62,7 +62,7 @@ $(function(){
 
 function updateServerStatus(){
 	$('#menu li a.serverinfo').siblings('span').addClass("working-grey");
-	$.getJSON("/rpc/serverstatus.php", function(data){
+	$.getJSON("rpc/serverstatus.php", function(data){
 		$('#menu li span').removeClass("working-grey");
 		$('#serverinfo p').empty();
 		$('#serverinfo li.ip p').append(data.ip);
