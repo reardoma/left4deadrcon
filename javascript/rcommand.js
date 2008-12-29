@@ -1,4 +1,5 @@
 $(function(){
+
 	$('#serverinfo li input[@type=hidden]').css("position","absolute").css("left","-5000px");
 
 	$('#serverinfo li').click(
